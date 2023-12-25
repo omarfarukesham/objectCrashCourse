@@ -126,23 +126,63 @@ Person.prototype.sayHello = function(){
 let person1 =  new Person('Bruce Lipton', 45)
 let person2 =  new Person('J K Rowling', 55)
 let person3 =  new Person('Zuhir Ryhan', 75)
-person1.sayHello()
-person2.sayHello()
-person3.sayHello()
+// person1.sayHello()
+// person2.sayHello()
+// person3.sayHello()
 
 // mutable and Immutable concept:
-
+let gpUser = {
+    pickTime: '200k',
+    network: 'GrameenPhone',
+    internet: '3G', 
+    modem: true,
+}
+Object.seal(gpUser)
+delete gpUser.modem
+gpUser.pickTime = '300k'
+console.log(gpUser)
 
 //special method with object in js
 
-//object.assign()
+// object.assign()
 
-//object.freeze()
+// object.freeze()
 
 //object.seal()
 
 //object.entries()
 
 // 3 steps nested objects, and iterate all values by using recursive function 
+const bookObjNested = {
+    bookInfo: {
+      title: 'Pride and Prejudice',
+      author: {
+        authorInfo: {
+          name: 'Jane Austen',
+          birthYear: 1775,
+          deathYear: 1817,
+          nationality: 'English',
+          notableWorks: ['Pride and Prejudice', 'Sense and Sensibility', 'Emma'],
+        },
+      },
+      publicationDetails: {
+        publicationYear: 1813,
+        genre: 'Novel',
+        pages: 279,
+        language: 'English',
+        isAvailable: true,
+      },
+    },
+  };
+  
+function showNestedObjRecursively(obj){
+    for(let key in obj){
+        if(typeof obj[key] === 'object' && obj[key] !== null){
+            showNestedObjRecursively(obj[key])
+        }else{
+            console.log(`key : ${key}, ... value ${obj[key]}`)
+        }
+    }
+}
 
-
+showNestedObjRecursively(bookObjNested)
